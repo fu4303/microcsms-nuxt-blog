@@ -1,0 +1,40 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  *,
+  *:before,
+  *:after {
+    @apply box-border m-0;
+  }
+  html {
+    @apply text-gray-700;
+  }
+  a {
+    @apply text-gray-700 hover:text-blue-400;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply my-3 text-gray-700;
+  }
+
+  pre {
+    @apply my-6;
+  }
+
+  pre code {
+    @apply p-6;
+  }
+}
+
+.hljs {
+  padding: 1.5rem !important;
+  /* overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none; */
+}

@@ -1,69 +1,82 @@
 <template>
-  <ul>
-    <li v-for="content in contents" :key="content.id">
-      <nuxt-link :to="`/${content.id}`">
-        {{ content.title }}
-      </nuxt-link>
-    </li>
-  </ul>
+  <main class="leading-normal tracking-normal">
+    <!-- Container -->
+    <div class="container w-full md:max-w-3xl mx-auto pt-20">
+      <h1>HOME</h1>
+      <ul v-if="contents.length">
+        <li
+          v-for="content in contents"
+          :key="content.id"
+          class="p-3 mb-5 bg-gray-100 rounded-lg"
+        >
+          <nuxt-link
+            :to="`/${content.id}`"
+            class="text-xl font-semibold block mb-2"
+          >
+            {{ content.emoji }} {{ content.title }}
+          </nuxt-link>
+
+          <!-- publish date & category -->
+          <div class="flex-row item-center pl-6">
+            <small class="text-xs mr-3">
+              <div class="w-3.5 h-3.5 inline-block pt-0.5 mr-1">
+                <clockIcon />
+              </div>
+
+              {{ new Date(content.publishedAt).toLocaleDateString() }}
+            </small>
+
+            <nuxt-link
+              :to="`/category/${content.category.id}/page/1`"
+              class="text-sm border px-2 py-0.5 rounded text-blue-400 hover:text-blue-500 border-blue-400 hover:border-blue-500"
+            >
+              {{ content.category.id }}
+            </nuxt-link>
+          </div>
+        </li>
+      </ul>
+      <ul v-else>
+        <li>no posts</li>
+      </ul>
+    </div>
+    <div>
+      <Pagination :category="$route.params.categoryId" :length="totalCount" />
+    </div>
+  </main>
 </template>
 
 <script>
 import axios from 'axios'
+import clockIcon from '~/static/icons/clock-icon.svg'
+import Pagination from '~/components/Pagination.vue'
+
 export default {
-  async asyncData() {
+  components: {
+    clockIcon,
+    Pagination,
+  },
+  async asyncData({ params }) {
+    const page = params.p || '1'
+    const categoryId = params.categoryId
+    const limit = 10
     const { data } = await axios.get(
       // your-service-id部分は自分のサービスidに置き換えてください
-      'https://shunyadezain.microcms.io/api/v1/blog',
+      `https://shunyadezain.microcms.io/api/v1/blog?limit=${limit}${
+        categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
+      }&offset=${(page - 1) * limit}`,
       {
         // your-api-key部分は自分のapi-keyに置き換えてください
         headers: { 'X-API-KEY': 'b710df0b-9a63-4cd7-aed4-48a7ac8b766e' },
       }
     )
+
     return data
   },
+  data() {
+    return {
+      totalPosts: '',
+    }
+  },
+  computed: {},
 }
 </script>
-
-<style lang="scss" scoped>
-.main {
-  width: 960px;
-  margin: 0 auto;
-}
-
-.title {
-  margin-bottom: 20px;
-}
-
-.publishedAt {
-  margin-bottom: 40px;
-}
-
-.post {
-  & > h1 {
-    font-size: 30px;
-    font-weight: bold;
-    margin: 40px 0 20px;
-    background-color: #eee;
-    padding: 10px 20px;
-    border-radius: 5px;
-  }
-
-  & > h2 {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 40px 0 16px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  & > p {
-    line-height: 1.8;
-    letter-spacing: 0.2px;
-  }
-
-  & > ol {
-    list-style-type: decimal;
-    list-style-position: inside;
-  }
-}
-</style>
