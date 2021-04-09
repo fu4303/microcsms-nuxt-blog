@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full md:max-w-3xl mx-auto flex justify-between p-3">
+  <nav class="w-full mx-auto flex justify-between py-3 px-4">
     <div><nuxt-link to="/">Codenote</nuxt-link></div>
     <div>
       <ul class="flex justify-between">

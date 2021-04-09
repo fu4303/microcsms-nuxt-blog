@@ -1,5 +1,5 @@
 <template v-if="length > 0">
-  <ul class="w-full md:max-w-xl mx-auto flex justify-center">
+  <ul class="max-w-md mx-auto flex justify-center py-5 bg-white rounded-md">
     <li class="mr-4">
       <nuxt-link
         :to="getPageLink + '/page/1'"
@@ -125,6 +125,6 @@ export default {
 <style lang="postcss" scoped>
 .active,
 a.nuxt-link-active {
-  @apply bg-blue-400 pointer-events-none;
+  @apply bg-blue-400 pointer-events-none text-white;
 }
 </style>

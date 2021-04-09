@@ -9,7 +9,7 @@
     @apply box-border m-0;
   }
   html {
-    @apply text-gray-700;
+    @apply text-gray-700 bg-gray-400;
   }
   a {
     @apply text-gray-700 hover:text-blue-400;

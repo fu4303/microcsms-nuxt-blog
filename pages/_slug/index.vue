@@ -13,7 +13,7 @@
           <p class="text-xs font-normal text-gray-600">
             更新日: {{ new Date(publishedAt).toLocaleDateString() }}
           </p>
-          <p class="text-blue-400">{{ category && category.name }}</p>
+          <p class="text-blue-500">{{ category && category.name }}</p>
         </div>
 
         <!-- Contents -->
