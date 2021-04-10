@@ -84,6 +84,9 @@ export default {
     googleAnalytics: {
       id: process.env.GOOGLE_ANALYTICS_ID,
     },
+    gtm: {
+      id: process.env.GTM_ID,
+    },
   },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
