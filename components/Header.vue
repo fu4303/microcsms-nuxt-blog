@@ -1,19 +1,20 @@
 <template>
-  <nav class="w-full mx-auto flex justify-between py-3 px-4">
-    <div><nuxt-link to="/">Codenote</nuxt-link></div>
-    <div>
+  <nav class="w-full mx-auto flex justify-center py-3 md:py-10 px-4">
+    <nuxt-link to="/">
+      <img src="/logo.png" alt="logo" class="w-32" />
+    </nuxt-link>
+
+    <!-- <div>
       <ul class="flex justify-between">
-        <!-- <li class="ml-3">
+        <li class="ml-3">
           <nuxt-link to="/category/" class="text-xs hover:text-blue-400"
             >カテゴリー</nuxt-link
           >
-        </li> -->
+        </li>
         <li class="ml-3">
-          <nuxt-link to="/" class="text-xs hover:text-blue-400"
-            >ポートフォリオ</nuxt-link
-          >
+          <a href="https://shunyakoide.com/" class="text-xs">ポートフォリオ</a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </nav>
 </template>

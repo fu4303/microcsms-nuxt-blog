@@ -9,10 +9,13 @@
     @apply box-border m-0;
   }
   html {
-    @apply text-gray-700 bg-gray-400;
+    @apply text-gray-700 bg-gray-100;
+  }
+  body {
+    @apply font-body leading-relaxed;
   }
   a {
-    @apply text-gray-700 hover:text-blue-400;
+    @apply text-gray-700 hover:text-gray-400;
   }
   h1,
   h2,
@@ -20,20 +23,17 @@
   h4,
   h5,
   h6 {
-    @apply my-3 text-gray-700;
+    @apply my-3 text-gray-800;
   }
 
   pre {
     @apply my-6;
   }
-
-  pre code {
-    @apply p-6;
-  }
 }
 
 .hljs {
-  padding: 1.5rem !important;
+  padding: 1.2rem !important;
+  font-size: 0.9em !important;
   /* overflow: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none; */

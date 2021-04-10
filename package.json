@@ -11,6 +11,7 @@
     "lint": "npm run lint:js"
   },
   "dependencies": {
+    "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.5",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
@@ -18,7 +19,6 @@
     "highlight.js": "^10.7.2",
     "node-sass": "^5.0.0",
     "nuxt": "^2.15.4",
-    "nuxt-lazy-load": "^1.2.5",
     "nuxt-svg-loader": "^1.2.0"
   },
   "devDependencies": {

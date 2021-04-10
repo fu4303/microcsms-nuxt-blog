@@ -6,12 +6,13 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'microcms-nuxt-jamstack-blog',
+    title: 'codenote',
     htmlAttrs: {
       lang: 'en',
     },
     meta: [
       { charset: 'utf-8' },
+      { name: 'copyright', content: '2021 codenote.com' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
     ],
@@ -41,10 +42,15 @@ export default {
     config: {},
   },
 
+  // Google Tag Maneger
+  gtm: {
+    id: 'GTM-XXXXXXX',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~assets/styles/tailwind.css',
-    '~/node_modules/highlight.js/styles/hybrid.css', // hilight theme
+    '~/node_modules/highlight.js/styles/dark.css', // hilight theme
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -61,7 +67,7 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['nuxt-lazy-load', 'nuxt-svg-loader', '@nuxtjs/pwa'],
+  modules: ['nuxt-svg-loader', '@nuxtjs/pwa', '@nuxtjs/gtm'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
@@ -104,7 +110,7 @@ export default {
               }
             )
             .then((res) =>
-              range(1, Math.ceil(res.data.totalCount / 10)).map((p) => ({
+              range(1, Math.ceil(res.data.totalCount / 9)).map((p) => ({
                 route: `/category/${category}/page/${p}`,
               }))
             )
