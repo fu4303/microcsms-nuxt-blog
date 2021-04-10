@@ -21,6 +21,8 @@
 
         <img
           class="w-full mb-5"
+          width="800px"
+          height="600px"
           :src="`${thumbnail.url}`"
           :alt="`${id}_thumbnail`"
         />
@@ -41,7 +43,13 @@
 <script>
 import axios from 'axios'
 import cheerio from 'cheerio'
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/core'
+import javascript from 'highlight.js/lib/languages/javascript'
+import css from 'highlight.js/lib/languages/css'
+import scss from 'highlight.js/lib/languages/scss'
+hljs.registerLanguage('javascript', javascript)
+hljs.registerLanguage('css', css)
+hljs.registerLanguage('scss', scss)
 
 export default {
   scrollToTop: true,
@@ -69,43 +77,52 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-#content_body >>> h1 {
-  @apply text-2xl text-center font-semibold p-3 my-6;
-}
-#content_body >>> h2 {
-  @apply text-xl text-center font-semibold border-t-4 border-b-4 border-black p-3 my-6;
-}
-#content_body >>> h3 {
-  @apply text-lg font-semibold border-t-4 border-black pt-4;
-}
-#content_body >>> h4 {
-  @apply text-base font-semibold border-gray-400;
-}
-#content_body >>> h5 {
-  @apply text-base font-semibold;
-}
-#content_body >>> blockquote {
-  @apply bg-gray-50 py-7 px-5 mb-5 rounded-lg;
-}
-#content_body >>> ol {
-  @apply py-4;
-}
-#content_body >>> li {
-  @apply text-sm font-medium ml-3 list-decimal list-inside;
-}
-#content_body >>> a {
-  @apply text-blue-500 hover:text-blue-200;
-}
-#content_body >>> p img {
-  @apply my-6;
-}
-#content_body >>> code {
-  @apply border-b border-black mr-1;
-}
-#content_body >>> pre {
-  @apply border-b my-6;
-}
-#content_body >>> p img {
-  @apply my-6;
+#content_body {
+  >>> h1 {
+    @apply text-2xl text-center font-semibold p-3 my-6;
+  }
+
+  >>> h2 {
+    @apply text-xl text-center font-semibold border-t-4 border-b-4 border-black p-3 my-6;
+  }
+
+  >>> h3 {
+    @apply text-lg font-semibold border-t-4 border-black pt-4;
+  }
+
+  >>> h4 {
+    @apply text-base font-semibold border-gray-400;
+  }
+
+  >>> h5 {
+    @apply text-base font-semibold;
+  }
+
+  >>> blockquote {
+    @apply bg-gray-50 py-7 px-5 mb-5 rounded-lg;
+  }
+  >>> ol {
+    @apply py-4;
+  }
+
+  >>> li {
+    @apply text-sm font-medium ml-3 list-decimal list-inside;
+  }
+
+  >>> a {
+    @apply text-blue-500 hover:text-blue-200;
+  }
+
+  >>> p img {
+    @apply my-6;
+  }
+
+  >>> code {
+    @apply border-b border-black mr-1;
+  }
+
+  >>> pre {
+    @apply border-b my-6;
+  }
 }
 </style>

@@ -12,7 +12,9 @@
         >
           <div class="w-full flex justify-center items-center overflow-hidden">
             <img
-              class="h-auto"
+              width="800px"
+              height="600px"
+              class="w-full h-auto"
               :src="`${content.thumbnail.url}`"
               :alt="`${content.id}_thumbnail`"
             />

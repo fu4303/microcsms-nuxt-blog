@@ -29,8 +29,8 @@ export default {
     short_name: 'codenote',
     title: 'codenote',
     'og:title': 'codenote',
-    description: 'codenoteです',
-    'og:description': 'codenoteサイトです',
+    description: '日々学んだことを書き留めるCodenoteです。',
+    'og:description': '日々学んだことを書き留めるCodenoteです。',
     theme_color: '#272727',
     background_color: '#ffffff',
   },
@@ -64,9 +64,9 @@ export default {
   },
 
   // Google Tag Maneger
-  // gtm: {
-  //   id: 'GTM-XXXXXXX',
-  // },
+  gtm: {
+    id: 'GTM-NR4CFGD',
+  },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -89,10 +89,10 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['nuxt-svg-loader', '@nuxtjs/pwa', '@nuxtjs/gtm'],
+  modules: ['@nuxtjs/pwa', '@nuxtjs/gtm'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: { analyze: false },
 
   generate: {
     async routes() {
