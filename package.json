@@ -12,6 +12,8 @@
     "analyze": "npx nuxt build -a"
   },
   "dependencies": {
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/gtm": "^2.4.0",
     "@nuxtjs/pwa": "^3.3.5",
     "axios": "^0.21.1",

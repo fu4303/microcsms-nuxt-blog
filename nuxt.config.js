@@ -1,8 +1,16 @@
 import axios from 'axios'
+require('dotenv').config()
+const { GOOGLE_ANALYTICS_ID, GTM_ID, X_API_KEY } = process.env
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+
+  env: {
+    X_API_KEY,
+    GOOGLE_ANALYTICS_ID,
+    GTM_ID,
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -65,9 +73,18 @@ export default {
 
   // Google Tag Maneger
   gtm: {
-    id: 'GTM-NR4CFGD',
+    id: process.env.GTM_ID,
+    pageTracking: true,
   },
 
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+  },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+    },
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~assets/styles/tailwind.css',
@@ -86,6 +103,7 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
     '@aceforth/nuxt-optimized-images',
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -103,7 +121,7 @@ export default {
       // 一覧のページング
       const pages = await axios
         .get(`https://shunyadezain.microcms.io/api/v1/blog?limit=0`, {
-          headers: { 'X-API-KEY': 'b710df0b-9a63-4cd7-aed4-48a7ac8b766e' },
+          headers: { 'X-API-KEY': process.env.X_API_KEY },
         })
         .then((res) =>
           range(1, Math.ceil(res.data.totalCount / limit)).map((p) => ({
@@ -113,7 +131,7 @@ export default {
 
       const categories = await axios
         .get(`https://shunyadezain.microcms.io/api/v1/categories?fields=id`, {
-          headers: { 'X-API-KEY': 'b710df0b-9a63-4cd7-aed4-48a7ac8b766e' },
+          headers: { 'X-API-KEY': process.env.X_API_KEY },
         })
         .then(({ data }) => {
           return data.contents.map((content) => content.id)
@@ -127,7 +145,7 @@ export default {
               `https://shunyadezain.microcms.io/api/v1/blog?limit=0&filters=category[equals]${category}`,
               {
                 headers: {
-                  'X-API-KEY': 'b710df0b-9a63-4cd7-aed4-48a7ac8b766e',
+                  'X-API-KEY': process.env.X_API_KEY,
                 },
               }
             )

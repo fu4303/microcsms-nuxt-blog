@@ -43,7 +43,7 @@ export default {
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
-        headers: { 'X-API-KEY': 'b710df0b-9a63-4cd7-aed4-48a7ac8b766e' },
+        headers: { 'X-API-KEY': process.env.X_API_KEY },
       }
     )
 
