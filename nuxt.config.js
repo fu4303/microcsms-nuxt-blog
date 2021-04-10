@@ -78,7 +78,8 @@ export default {
   },
 
   googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID, // Use as fallback if no runtime config is provided
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    debug: true, // Use as fallback if no runtime config is provided
   },
   publicRuntimeConfig: {
     googleAnalytics: {
