@@ -1,5 +1,7 @@
 <template v-if="length > 0">
-  <ul class="max-w-md mx-auto flex justify-center py-5 bg-white rounded-md">
+  <ul
+    class="max-w-lg mx-auto flex justify-center py-5 my-10 bg-white rounded-md"
+  >
     <li class="mr-4">
       <nuxt-link
         :to="getPageLink + '/page/1'"

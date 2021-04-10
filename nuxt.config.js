@@ -8,7 +8,7 @@ export default {
   head: {
     title: 'codenote',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ja',
     },
     meta: [
       { charset: 'utf-8' },
@@ -17,6 +17,22 @@ export default {
       { hid: 'description', name: 'description', content: '' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+
+  /*
+   ** @nuxtjs/pwa Configuration
+   ** https://github.com/nuxt-community/pwa-module
+   */
+  manifest: {
+    name: 'codenote',
+    lang: 'ja',
+    short_name: 'codenote',
+    title: 'codenote',
+    'og:title': 'codenote',
+    description: 'codenoteです',
+    'og:description': 'codenoteサイトです',
+    theme_color: '#272727',
+    background_color: '#ffffff',
   },
 
   router: {
@@ -42,10 +58,15 @@ export default {
     config: {},
   },
 
-  // Google Tag Maneger
-  gtm: {
-    id: 'GTM-XXXXXXX',
+  optimizedImages: {
+    optimizeImages: true,
+    // optimizeImagesInDev: true, // 開発環境でも画像圧縮
   },
+
+  // Google Tag Maneger
+  // gtm: {
+  //   id: 'GTM-XXXXXXX',
+  // },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
@@ -64,6 +85,7 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
+    '@aceforth/nuxt-optimized-images',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

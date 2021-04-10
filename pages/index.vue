@@ -1,48 +1,21 @@
 <template>
   <main class="leading-relaxed tracking-normal">
     <!-- Container -->
-    <div class="container w-full w-full md:max-w-3xl mx-auto pt-40 p-3">
+    <div class="container w-full md:max-w-3xl mx-auto pt-40 p-3">
       <div
-        class="text-lg font-semibold text-center mb-10 pb-20 border-b-2 border-gray-900"
+        class="text-lg font-semibold text-center mb-5 pb-20 border-b-2 border-gray-900"
       >
         {{ pageName }}
       </div>
-      <ul
-        v-if="contents.length"
-        id="list"
-        class="w-12/12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid-rows-2 gap-5"
-      >
-        <li v-for="content in contents" :key="content.id" class="mb-5 relative">
-          <nuxt-link
-            :to="`/${content.id}`"
-            class="font-normal break-all mb-0 sm:mb-10 grid grid-cols-2 sm:grid-cols-1"
-          >
-            <div class="w-full flex justify-center items-center">
-              <img
-                :src="`${content.thumbnail.url}`"
-                :alt="`${content.id}_thumbnail`"
-              />
-            </div>
 
-            <div>
-              <small class="ml-2 md:ml-0 text-xs tracking-wider text-gray-400">
-                {{ new Date(content.publishedAt).toLocaleDateString() }}
-              </small>
-
-              <div class="text-sm ml-2 md:ml-0">{{ content.title }}</div>
-            </div>
-          </nuxt-link>
-
-          <div
-            class="text-xs border px-2 pt-0.5 pb-1 bg-gray-200 absolute -top-2 right-3"
-          >
-            {{ content.category.id.toUpperCase() }}
-          </div>
-        </li>
-      </ul>
-      <ul v-else>
-        <li>no posts</li>
-      </ul>
+      <!-- Category -->
+      <Category />
+    </div>
+    <div class="bg-white w-full">
+      <!-- Contents -->
+      <Articles :contents="contents" />
+    </div>
+    <div class="w-full md:max-w-3xl mx-auto p-3">
       <Pagination :category="$route.params.categoryId" :length="totalCount" />
     </div>
   </main>
@@ -51,10 +24,14 @@
 <script>
 import axios from 'axios'
 import Pagination from '~/components/Pagination.vue'
+import Articles from '~/components/Articles.vue'
+import Category from '~/components/Category.vue'
 
 export default {
   components: {
     Pagination,
+    Articles,
+    Category,
   },
   scrollToTop: true,
   async asyncData({ params }) {
