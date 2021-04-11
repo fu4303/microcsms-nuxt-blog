@@ -71,24 +71,6 @@ export default {
     // optimizeImagesInDev: true, // 開発環境でも画像圧縮
   },
 
-  // Google Tag Maneger
-  gtm: {
-    id: process.env.GTM_ID,
-    pageTracking: true,
-  },
-
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID,
-    debug: true, // Use as fallback if no runtime config is provided
-  },
-  publicRuntimeConfig: {
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-    },
-    gtm: {
-      id: process.env.GTM_ID,
-    },
-  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~assets/styles/tailwind.css',
@@ -112,6 +94,25 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/pwa', '@nuxtjs/gtm'],
+
+  // Google Tag Maneger
+  gtm: {
+    id: process.env.GTM_ID,
+    pageTracking: true,
+  },
+
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    debug: true, // Use as fallback if no runtime config is provided
+  },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+    },
+    gtm: {
+      id: process.env.GTM_ID,
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: { analyze: false },
