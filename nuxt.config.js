@@ -1,15 +1,25 @@
 import axios from 'axios'
 require('dotenv').config()
-const { GOOGLE_ANALYTICS_ID, GTM_ID, X_API_KEY } = process.env
+const { X_API_KEY } = process.env
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  env: {
-    X_API_KEY,
-    GOOGLE_ANALYTICS_ID,
-    GTM_ID,
+  privateRuntimeConfig: {
+    apiKey: X_API_KEY,
+  },
+  publicRuntimeConfig: {
+    apiKey: process.env.NODE_ENV !== 'production' ? X_API_KEY : undefined,
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+      debug: true,
+    },
+    gtm: {
+      id: process.env.GTM_ID,
+      pageTracking: true,
+      debug: true,
+    },
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -93,29 +103,19 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/pwa', '@nuxtjs/gtm'],
-
-  // Google Tag Maneger
-  gtm: {
-    id: process.env.GTM_ID,
-    pageTracking: true,
-  },
-
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID,
-    debug: true, // Use as fallback if no runtime config is provided
-  },
-  publicRuntimeConfig: {
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-    },
-    gtm: {
-      id: process.env.GTM_ID,
-    },
-  },
+  modules: [
+    '@nuxtjs/pwa',
+    '@nuxtjs/gtm',
+    ['vue-scrollto/nuxt', { duration: 300 }],
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: { analyze: false },
+  build: {
+    analyze: false,
+    parallel: true, // <-ビルドを早くする
+    cache: true, // <-ビルドを早くする
+    hardSource: true, // <-ビルドを早くする
+  },
 
   generate: {
     async routes() {
