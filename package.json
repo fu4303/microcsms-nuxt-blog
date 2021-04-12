@@ -21,7 +21,8 @@
     "core-js": "^3.10.0",
     "highlight.js": "^10.7.2",
     "node-sass": "^5.0.0",
-    "nuxt": "^2.15.4"
+    "nuxt": "^2.15.4",
+    "vue-scrollto": "^2.20.0"
   },
   "devDependencies": {
     "@aceforth/nuxt-optimized-images": "^1.4.0",

@@ -28,6 +28,8 @@
         />
       </div>
 
+      <TableOfContents :toc="toc" />
+
       <!-- Contents -->
       <!-- eslint-disable vue/no-v-html -->
       <div
@@ -47,12 +49,17 @@ import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import scss from 'highlight.js/lib/languages/scss'
+import TableOfContents from '~/components/TableOfContents'
+
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
 hljs.registerLanguage('scss', scss)
 
 export default {
-  scrollToTop: true,
+  components: {
+    TableOfContents,
+  },
+
   async asyncData({ params }) {
     const { data } = await axios.get(
       `https://shunyadezain.microcms.io/api/v1/blog/${params.slug}`,
@@ -68,9 +75,17 @@ export default {
       $(elm).addClass('hljs rounded-lg')
     })
 
+    const headings = $('h2, h3, h4').toArray()
+    const toc = headings.map((data) => ({
+      text: data.children[0].data,
+      id: data.attribs.id,
+      name: data.name,
+    }))
+
     return {
       ...data,
       body: $.html(),
+      toc,
     }
   },
 }
@@ -99,7 +114,7 @@ export default {
   }
 
   >>> blockquote {
-    @apply bg-gray-50 py-7 px-5 mb-5 rounded-lg;
+    @apply bg-gray-100 py-7 px-5 mb-5 rounded-lg;
   }
   >>> ol {
     @apply py-4;

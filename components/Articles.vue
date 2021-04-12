@@ -30,9 +30,11 @@
         </nuxt-link>
 
         <div
-          class="text-xs border px-2 pt-0.5 pb-1 bg-gray-200 absolute -top-2 right-3"
+          class="text-xs border px-2 pt-0.5 pb-1 bg-gray-200 absolute -top-2 left-3 md:left-3"
         >
-          {{ content.category.id.toUpperCase() }}
+          <nuxt-link :to="`/category/${content.category.id}/page/1`">
+            {{ content.category.id.toUpperCase() }}
+          </nuxt-link>
         </div>
       </li>
     </ul>

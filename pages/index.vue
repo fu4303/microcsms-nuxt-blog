@@ -9,14 +9,17 @@
       </div>
 
       <!-- Category -->
-      <Category />
+      <Category :category="getCategory.contents" />
     </div>
     <div class="bg-white w-full">
       <!-- Contents -->
-      <Articles :contents="contents" />
+      <Articles :contents="getContents.contents" />
     </div>
     <div class="w-full md:max-w-3xl mx-auto p-3">
-      <Pagination :category="$route.params.categoryId" :length="totalCount" />
+      <Pagination
+        :category="$route.params.categoryId"
+        :length="getContents.totalCount"
+      />
     </div>
   </main>
 </template>
@@ -34,27 +37,43 @@ export default {
     Category,
   },
   scrollToTop: true,
-  async asyncData({ params }) {
+  async asyncData({ $config, params }) {
     const page = params.p || '1'
     const categoryId = params.categoryId
     const limit = 9
-    const { data } = await axios.get(
+    const { data: contents } = await axios.get(
       `https://shunyadezain.microcms.io/api/v1/blog?limit=${limit}${
         categoryId === undefined ? '' : `&filters=category[equals]${categoryId}`
       }&offset=${(page - 1) * limit}`,
       {
-        headers: { 'X-API-KEY': process.env.X_API_KEY },
+        headers: { 'X-API-KEY': $config.apiKey },
+      }
+    )
+
+    const { data: category } = await axios.get(
+      `https://shunyadezain.microcms.io/api/v1/categories`,
+      {
+        headers: { 'X-API-KEY': $config.apiKey },
       }
     )
 
     return {
-      ...data,
+      contents,
+      category,
     }
   },
   data() {
     return {
       pageName: 'ALL',
     }
+  },
+  computed: {
+    getContents() {
+      return this.contents
+    },
+    getCategory() {
+      return this.category
+    },
   },
   mounted() {
     if (this.$route.params.categoryId) {
