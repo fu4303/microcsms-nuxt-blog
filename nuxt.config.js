@@ -6,22 +6,6 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
-  privateRuntimeConfig: {
-    apiKey: X_API_KEY,
-  },
-  publicRuntimeConfig: {
-    apiKey: process.env.NODE_ENV !== 'production' ? X_API_KEY : undefined,
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-      debug: true,
-    },
-    gtm: {
-      id: process.env.GTM_ID,
-      pageTracking: true,
-      debug: true,
-    },
-  },
-
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'codenote',
@@ -51,6 +35,11 @@ export default {
     'og:description': '日々学んだことを書き留めるCodenoteです。',
     theme_color: '#272727',
     background_color: '#ffffff',
+  },
+
+  loading: {
+    color: 'gray',
+    height: '5px',
   },
 
   router: {
@@ -108,6 +97,25 @@ export default {
     '@nuxtjs/gtm',
     ['vue-scrollto/nuxt', { duration: 300 }],
   ],
+
+  privateRuntimeConfig: {
+    apiKey: X_API_KEY,
+  },
+  publicRuntimeConfig: {
+    apiKey: process.env.NODE_ENV !== 'production' ? X_API_KEY : undefined,
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS_ID,
+      debug: true,
+    },
+    gtm: {
+      id: process.env.GTM_ID,
+    },
+  },
+
+  gtm: {
+    pageTracking: true,
+    debug: false,
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

@@ -1,5 +1,5 @@
 <template>
-  <ul class="flex pb-5">
+  <ul class="flex flex-wrap pb-5">
     <li class="mr-3">
       <nuxt-link
         to="/"
