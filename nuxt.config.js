@@ -122,7 +122,7 @@ export default {
     analyze: false,
     parallel: true, // <-ビルドを早くする
     cache: true, // <-ビルドを早くする
-    hardSource: true, // <-ビルドを早くする
+    // hardSource: true, // <-ビルドを早くする
   },
 
   generate: {

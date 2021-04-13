@@ -4,6 +4,7 @@
     <div
       class="container w-full md:max-w-3xl mx-auto mt-32 pb-12 bg-white relative"
     >
+      <BackToTopButton class="sm:hidden" />
       <!--Title-->
       <div class="pt-10">
         <h1 class="text-center font-medium break-normal pb-28 pt-20 text-xl">
@@ -28,7 +29,7 @@
         />
       </div>
 
-      <TableOfContents :toc="toc" />
+      <TableOfContents :toc="toc" class="hidden md:block" />
 
       <!-- Contents -->
       <!-- eslint-disable vue/no-v-html -->
@@ -50,6 +51,7 @@ import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import scss from 'highlight.js/lib/languages/scss'
 import TableOfContents from '~/components/TableOfContents'
+import BackToTopButton from '~/components/BackToTopButton.vue'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
@@ -58,6 +60,7 @@ hljs.registerLanguage('scss', scss)
 export default {
   components: {
     TableOfContents,
+    BackToTopButton,
   },
 
   async asyncData({ params }) {
