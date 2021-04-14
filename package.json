@@ -12,23 +12,20 @@
     "analyze": "npx nuxt build -a"
   },
   "dependencies": {
-    "@nuxtjs/dotenv": "^1.4.1",
-    "@nuxtjs/pwa": "^3.3.5",
     "axios": "^0.21.1",
     "cheerio": "^1.0.0-rc.5",
-    "core-js": "^3.10.0",
+    "core-js": "^3.10.1",
     "highlight.js": "^10.7.2",
-    "node-sass": "^5.0.0",
-    "nuxt": "^2.15.4",
-    "vue-scrollto": "^2.20.0"
+    "nuxt": "^2.15.4"
   },
   "devDependencies": {
-    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@mdi/js": "^5.9.55",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/google-analytics": "^2.4.0",
     "@nuxtjs/gtm": "^2.4.0",
+    "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/tailwindcss": "^4.0.3",
     "@tailwindcss/postcss7-compat": "^2.1.0",
     "autoprefixer": "^9.8.6",
@@ -38,13 +35,9 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.8.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-mozjpeg": "^9.0.0",
-    "imagemin-pngquant": "^9.0.2",
     "postcss": "^7.0.35",
     "prettier": "^2.2.1",
-    "sass-loader": "^10.1.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0",
-    "webp-loader": "^0.6.0"
+    "vue-scrollto": "^2.20.0"
   }
 }

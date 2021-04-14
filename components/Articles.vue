@@ -11,13 +11,24 @@
           class="font-normal break-all grid grid-cols-2 sm:grid-cols-1"
         >
           <div class="w-full flex justify-center items-center overflow-hidden">
-            <img
-              width="800px"
-              height="600px"
-              class="w-full h-auto"
-              :src="`${content.thumbnail.url}`"
-              :alt="`${content.id}_thumbnail`"
-            />
+            <picture v-if="content.thumbnail">
+              <source
+                media="(min-width: 375px)"
+                type="image/webp"
+                :srcset="`${content.thumbnail.url}?w=350&fm=webp, ${content.thumbnail.url}?w=700&fm=webp 2x`"
+              />
+              <source
+                media="(max-width: 375px)"
+                type="image/webp"
+                :srcset="`${content.thumbnail.url}?w=350&fm=webp, ${content.thumbnail.url}?w=700&fm=webp 2x`"
+              />
+              <img
+                ref="ogimage"
+                :src="content.thumbnail.url + '?w=500&q=100'"
+                class="ogimage"
+                alt
+              />
+            </picture>
           </div>
 
           <div>

@@ -1,10 +1,10 @@
 <template>
   <div>
-    <transition>
+    <transition name="button">
       <a
         v-show="btnActive"
         v-scroll-to="'body'"
-        class="p-2 bg-gray-100 rounded-full block fixed bottom-20 right-3"
+        class="p-2 bg-gray-100 rounded-full block fixed bottom-24 right-3"
       >
         <svg
           style="width: 24px; height: 24px"
@@ -15,17 +15,33 @@
         </svg>
       </a>
     </transition>
+    <transition name="button">
+      <button
+        v-show="btnActive"
+        class="p-2 bg-gray-100 rounded-full block fixed bottom-10 right-3"
+      >
+        <svg
+          style="width: 24px; height: 24px"
+          viewBox="0 0 24 24"
+          class="w-100 h-100"
+        >
+          <path fill="black" :d="iconMenu" />
+        </svg>
+      </button>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mdiChevronUp } from '@mdi/js'
+import { mdiChevronUp, mdiMenu } from '@mdi/js'
 export default {
+  transition: 'button',
   data() {
     return {
       btnActive: true,
       scroll: 0,
       iconChevronUp: mdiChevronUp,
+      iconMenu: mdiMenu,
     }
   },
   mounted() {
@@ -47,24 +63,24 @@ export default {
 
 <style lang="postcss" scoped>
 /* アニメーション中のスタイル */
-.v-leave-active,
-.v-enter-active {
+.button-leave-active,
+.button-enter-active {
   transition: opacity 0.3s;
 }
 
 /* 表示アニメーション */
-.v-enter {
+.button-enter {
   opacity: 0;
 }
-.v-enter-to {
+.button-enter-to {
   opacity: 1;
 }
 
 /* 非表示アニメーション */
-.v-leave {
+.button-leave {
   opacity: 1;
 }
-.v-leave-to {
+.button-leave-to {
   opacity: 0;
 }
 </style>

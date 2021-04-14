@@ -4,10 +4,12 @@
     <div
       class="container w-full md:max-w-3xl mx-auto mt-32 pb-12 bg-white relative"
     >
-      <BackToTopButton class="sm:hidden" />
+      <BlogButton class="sm:hidden" />
       <!--Title-->
       <div class="pt-10">
-        <h1 class="text-center font-medium break-normal pb-28 pt-20 text-xl">
+        <h1
+          class="text-center text-md md:text-xl font-medium break-normal pb-28 pt-20 px-5"
+        >
           <small class="text-xs tracking-wider text-gray-400 block pb-5">
             {{ new Date(publishedAt).toLocaleDateString() }}
           </small>
@@ -20,16 +22,27 @@
           {{ category && category.name }}
         </nuxt-link>
 
-        <img
-          class="w-full mb-5"
-          width="800px"
-          height="600px"
-          :src="`${thumbnail.url}`"
-          :alt="`${id}_thumbnail`"
-        />
+        <picture v-if="thumbnail" class="w-full mb-5">
+          <source
+            media="(min-width: 375px)"
+            type="image/webp"
+            :srcset="`${thumbnail.url}?w=768&fm=webp, ${thumbnail.url}?w=1536&fm=webp 2x`"
+          />
+          <source
+            media="(max-width: 375px)"
+            type="image/webp"
+            :srcset="`${thumbnail.url}?w=375&fm=webp, ${thumbnail.url}?w=750&fm=webp 2x`"
+          />
+          <img
+            ref="ogimage"
+            :src="thumbnail.url + '?w=768&q=100'"
+            class="ogimage"
+            alt
+          />
+        </picture>
       </div>
 
-      <TableOfContents :toc="toc" class="hidden md:block" />
+      <TableOfContents :toc="toc" class="hidden sm:block" />
 
       <!-- Contents -->
       <!-- eslint-disable vue/no-v-html -->
@@ -51,7 +64,7 @@ import javascript from 'highlight.js/lib/languages/javascript'
 import css from 'highlight.js/lib/languages/css'
 import scss from 'highlight.js/lib/languages/scss'
 import TableOfContents from '~/components/TableOfContents'
-import BackToTopButton from '~/components/BackToTopButton.vue'
+import BlogButton from '~/components/BlogButton.vue'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
@@ -60,7 +73,7 @@ hljs.registerLanguage('scss', scss)
 export default {
   components: {
     TableOfContents,
-    BackToTopButton,
+    BlogButton,
   },
 
   async asyncData({ params }) {
