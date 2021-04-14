@@ -4,7 +4,6 @@
     <div
       class="container w-full md:max-w-3xl mx-auto mt-32 pb-12 bg-white relative"
     >
-      <BlogButton class="sm:hidden" />
       <!--Title-->
       <div class="pt-10">
         <h1
@@ -52,6 +51,9 @@
         v-html="body"
       ></div>
       <!-- eslint-enable -->
+
+      <BlogButton class="sm:hidden" />
+      <MobleMenu :toc="toc" />
     </div>
   </main>
 </template>
@@ -65,6 +67,7 @@ import css from 'highlight.js/lib/languages/css'
 import scss from 'highlight.js/lib/languages/scss'
 import TableOfContents from '~/components/TableOfContents'
 import BlogButton from '~/components/BlogButton.vue'
+import MobleMenu from '~/components/MobleMenu'
 
 hljs.registerLanguage('javascript', javascript)
 hljs.registerLanguage('css', css)
@@ -74,6 +77,7 @@ export default {
   components: {
     TableOfContents,
     BlogButton,
+    MobleMenu,
   },
 
   async asyncData({ params }) {

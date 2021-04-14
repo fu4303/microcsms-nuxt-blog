@@ -65,11 +65,6 @@ export default {
     config: {},
   },
 
-  optimizedImages: {
-    optimizeImages: true,
-    // optimizeImagesInDev: true, // 開発環境でも画像圧縮
-  },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '~assets/styles/tailwind.css',
@@ -87,13 +82,12 @@ export default {
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/gtm',
+    ['@nuxtjs/google-gtag'],
     ['vue-scrollto/nuxt', { duration: 300 }],
   ],
 
@@ -102,18 +96,10 @@ export default {
   },
   publicRuntimeConfig: {
     apiKey: process.env.NODE_ENV !== 'production' ? X_API_KEY : undefined,
-    googleAnalytics: {
-      id: process.env.GOOGLE_ANALYTICS_ID,
-      debug: true,
-    },
-    gtm: {
-      id: process.env.GTM_ID,
-    },
   },
-
-  gtm: {
-    pageTracking: true,
-    debug: false,
+  'google-gtag': {
+    id: process.env.GTM_ID,
+    debug: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

@@ -19,6 +19,7 @@
       <button
         v-show="btnActive"
         class="p-2 bg-gray-100 rounded-full block fixed bottom-10 right-3"
+        @click="onClick"
       >
         <svg
           style="width: 24px; height: 24px"
@@ -56,6 +57,9 @@ export default {
       } else {
         this.btnActive = false
       }
+    },
+    onClick() {
+      this.$nuxt.$emit('menuClick')
     },
   },
 }
